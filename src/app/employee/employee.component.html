@@ -1,0 +1,90 @@
+<div class="container">
+
+    <div class="row fond_blanc mt-5">
+        <div class="col-12 mt-2 mb-2">
+          <div class="row">
+  
+            <div class="col-md-10">
+              <h3>Liste des Employees</h3>
+            </div>
+            <div class="col-md-2">
+              <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary"
+              (click)="addClick()" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Ajouter
+              </button>
+            </div>
+          </div>
+  
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">State</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let employee of employees">
+                    <td>{{ employee.EmployeeID }}</td>
+                    <td>{{employee.Name }}</td>
+                    <td>{{employee.Age }}</td>
+                    <td>{{employee.State}}</td>
+                    <td>{{employee.Country}}</td>
+                    <td class="text-center">
+                      <div class="btn-group">
+                              <i class="fas fa-edit" 
+                              (click)="editClick(employee)" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+                              <i class="far fa-trash-alt text-danger" (click)="delete(employee.EmployeeID)"></i>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+        </div>
+    </div>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">{{modalTitle}}</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="input-group mb-3">
+            <span class="input-group-text">Nom *</span>
+            <input type="text" class="form-control" [(ngModel)]="Name"/>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Age *</span>
+            <input type="number" class="form-control" [(ngModel)]="Age"/>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Etat *</span>
+            <input type="text" class="form-control" [(ngModel)]="State"/>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Pays *</span>
+            <input type="text" class="form-control" [(ngModel)]="Country"/>
+          </div>
+          
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          
+          <button type="button" (click)="createClick()" 
+            *ngIf="EmployeeID==0" class="btn btn-primary">Ajouter</button>
+          
+            <button type="button" (click)="updateClick()" 
+            *ngIf="EmployeeID!=0" class="btn btn-primary">Modifier</button>
+        </div>
+      </div>
+    </div>
+  </div>
