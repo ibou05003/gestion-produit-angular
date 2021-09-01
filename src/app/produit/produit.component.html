@@ -5,7 +5,7 @@
           <div class="row">
   
             <div class="col-md-10">
-              <h3>Liste des Employees</h3>
+              <h3>Liste des Produits</h3>
             </div>
             <div class="col-md-2">
               <!-- Button trigger modal -->
@@ -20,25 +20,27 @@
                 <thead>
                   <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Age</th>
-                    <th scope="col">State</th>
-                    <th scope="col">Country</th>
+                    <th scope="col">Libellé</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Prix unitaire</th>
+                    <th scope="col">Quantité</th>
+                    <th scope="col">Date de Premption</th>
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let employee of employees">
-                    <td>{{ employee.EmployeeID }}</td>
-                    <td>{{employee.Name }}</td>
-                    <td>{{employee.Age }}</td>
-                    <td>{{employee.State}}</td>
-                    <td>{{employee.Country}}</td>
+                  <tr *ngFor="let produit of produits">
+                    <td>{{ produit.Id }}</td>
+                    <td>{{ produit.Libelle }}</td>
+                    <td>{{ produit.Description }}</td>
+                    <td>{{ produit.PU }}</td>
+                    <td>{{ produit.Quantite }}</td>
+                    <td>{{ produit.DatePeremption }}</td>
                     <td class="text-center">
                       <div class="btn-group">
                               <i class="fas fa-edit" 
-                              (click)="editClick(employee)" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
-                              <i class="far fa-trash-alt text-danger" (click)="delete(employee.EmployeeID)"></i>
+                              (click)="editClick(produit)" data-bs-toggle="modal" data-bs-target="#exampleModal"></i>
+                              <i class="far fa-trash-alt text-danger" (click)="delete(produit.Id)"></i>
                       </div>
                     </td>
                   </tr>
@@ -58,20 +60,24 @@
         </div>
         <div class="modal-body">
           <div class="input-group mb-3">
-            <span class="input-group-text">Nom *</span>
-            <input type="text" class="form-control" [(ngModel)]="Name"/>
+            <span class="input-group-text">Libellé *</span>
+            <input type="text" class="form-control" [(ngModel)]="Libelle"/>
           </div>
           <div class="input-group mb-3">
-            <span class="input-group-text">Age *</span>
-            <input type="number" class="form-control" [(ngModel)]="Age"/>
+            <span class="input-group-text">Description *</span>
+            <input type="text" class="form-control" [(ngModel)]="Description"/>
           </div>
           <div class="input-group mb-3">
-            <span class="input-group-text">Etat *</span>
-            <input type="text" class="form-control" [(ngModel)]="State"/>
+            <span class="input-group-text">Prix Unitaire *</span>
+            <input type="number" class="form-control" [(ngModel)]="PU"/>
           </div>
           <div class="input-group mb-3">
-            <span class="input-group-text">Pays *</span>
-            <input type="text" class="form-control" [(ngModel)]="Country"/>
+            <span class="input-group-text">Quantité *</span>
+            <input type="number" class="form-control" [(ngModel)]="Quantite">
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Date de Peremption *</span>
+            <input type="date" class="form-control" [(ngModel)]="DatePeremption">
           </div>
           
   
@@ -80,10 +86,10 @@
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           
           <button type="button" (click)="createClick()" 
-            *ngIf="EmployeeID==0" class="btn btn-primary">Ajouter</button>
+            *ngIf="Id==0" class="btn btn-primary">Ajouter</button>
           
             <button type="button" (click)="updateClick()" 
-            *ngIf="EmployeeID!=0" class="btn btn-primary">Modifier</button>
+            *ngIf="Id!=0" class="btn btn-primary">Modifier</button>
         </div>
       </div>
     </div>
